@@ -769,6 +769,33 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0xC0                    /*  End Collection                          */
 };
 
+/* Fixed virtual pad report descriptor */
+static const __u8 huion_new_1060_plus_buttonpad_rdesc[] = {
+	0x05, 0x01,             /*  Usage Page (Desktop),                   */
+	0x09, 0x07,             /*  Usage (Keypad),                         */
+	0xA1, 0x01,             /*  Collection (Application),               */
+	0x85, 0xF7,             /*      Report ID (247),                    */
+	0x05, 0x0D,             /*      Usage Page (Digitizer),             */
+	0x09, 0x39,             /*      Usage (Tablet Function Keys),       */
+	0xA0,                   /*      Collection (Physical),              */
+	0x05, 0x09,             /*          Usage Page (Button),            */
+	0x75, 0x08,             /*          Report Size (8),                */
+	0x95, 0x03,             /*          Report Count (3),               */
+	0x81, 0x03,             /*          Input (Constant, Variable),     */
+	0x19, 0x01,             /*          Usage Minimum (01h),            */
+	0x29, 0x12,             /*          Usage Maximum (12h),            */
+	0x95, 0x0C,             /*          Report Count (12),              */
+	0x81, 0x02,             /*          Input (Variable),               */
+	0x75, 0x01,             /*          Report Size (1),                */
+	0x95, 0x04,             /*          Report Count (4),               */
+	0x81, 0x03,             /*          Input (Constant, Variable),     */
+	0x75, 0x08,             /*          Report Size (8),                */
+	0x95, 0x06,             /*          Report Count (6),               */
+	0x81, 0x03,             /*          Input (Constant, Variable),     */
+	0xC0,                   /*      End Collection,                     */
+	0xC0                    /*  End Collection                          */
+};
+
 /* Parameter indices */
 enum uclogic_prm {
 	UCLOGIC_PRM_X_LM	= 1,
@@ -1225,8 +1252,8 @@ static int uclogic_probe(struct hid_device *hdev,
 
 			rc = uclogic_probe_buttons(
 					hdev,
-					uclogic_buttonpad_rdesc,
-					sizeof(uclogic_buttonpad_rdesc));
+					huion_new_1060_plus_buttonpad_rdesc,
+					sizeof(huion_new_1060_plus_buttonpad_rdesc));
 			drvdata->has_virtual_pad_interface = !rc;
 		} else {
 			drvdata->ignore_pen_usage = true;
