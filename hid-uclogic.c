@@ -722,14 +722,14 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0xA1, 0x01,             /*  Collection (Application),               */
 	0x85, 0x08,             /*      Report ID (8),                      */
 	0x09, 0x20,             /*      Usage (Stylus),                     */
-	0xA1, 0x00,             /*      Collection (Physical),              */
+	0xA0,                   /*      Collection (Physical),              */
 	0x09, 0x42,             /*          Usage (Tip Switch),             */
 	0x09, 0x44,             /*          Usage (Barrel Switch),          */
 	0x09, 0x45,             /*          Usage (Eraser),                 */
 	0x09, 0x3C,             /*          Usage (Invert),                 */
 	0x09, 0x43,             /*          Usage (Secondary Tip Switch),   */
 	0x09, 0x44,             /*          Usage (Barrel Switch),          */
-	0x15, 0x00,             /*          Logical Minimum (0),            */
+	0x14,                   /*          Logical Minimum (0),            */
 	0x25, 0x01,             /*          Logical Maximum (1),            */
 	0x75, 0x01,             /*          Report Size (1),                */
 	0x95, 0x06,             /*          Report Count (6),               */
@@ -745,7 +745,7 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0x55, 0x0D,             /*          Unit Exponent (13),             */
 	0x65, 0x33,             /*          Unit (Inch^3),                  */
 	0x26, 0xFF, 0x7F,       /*          Logical Maximum (32767),        */
-	0x35, 0x00,             /*          Physical Minimum (0),           */
+	0x34,                   /*          Physical Minimum (0),           */
 	0x46, 0x00, 0x08,       /*          Physical Maximum (2048),        */
 	0x75, 0x10,             /*          Report Size (16),               */
 	0x95, 0x02,             /*          Report Count (2),               */
