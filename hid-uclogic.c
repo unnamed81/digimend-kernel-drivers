@@ -715,6 +715,51 @@ static const __u8 uclogic_buttonpad_rdesc[] = {
 	0xC0                    /*  End Collection                          */
 };
 
+/* Fixed report descriptor template for HUION new 1060+ */
+static const __u8 huion_new_1060_plus_rdesc_template[] = {
+	0x05, 0x0D,             /*  Usage Page (Digitizer),                 */
+	0x09, 0x02,             /*  Usage (Pen),                            */
+	0xA1, 0x01,             /*  Collection (Application),               */
+	0x85, 0x08,             /*      Report ID (8),                      */
+	0x09, 0x20,             /*      Usage (Stylus),                     */
+	0xA1, 0x00,             /*      Collection (Physical),              */
+	0x09, 0x42,             /*          Usage (Tip Switch),             */
+	0x09, 0x44,             /*          Usage (Barrel Switch),          */
+	0x09, 0x45,             /*          Usage (Eraser),                 */
+	0x09, 0x3C,             /*          Usage (Invert),                 */
+	0x09, 0x43,             /*          Usage (Secondary Tip Switch),   */
+	0x09, 0x44,             /*          Usage (Barrel Switch),          */
+	0x15, 0x00,             /*          Logical Minimum (0),            */
+	0x25, 0x01,             /*          Logical Maximum (1),            */
+	0x75, 0x01,             /*          Report Size (1),                */
+	0x95, 0x06,             /*          Report Count (6),               */
+	0x81, 0x02,             /*          Input (Variable),               */
+	0x09, 0x32,             /*          Usage (In Range),               */
+	0x75, 0x01,             /*          Report Size (1),                */
+	0x95, 0x01,             /*          Report Count (1),               */
+	0x81, 0x02,             /*          Input (Variable),               */
+	0x81, 0x03,             /*          Input (Constant, Variable),     */
+	0x05, 0x01,             /*          Usage Page (Desktop),           */
+	0x09, 0x30,             /*          Usage (X),                      */
+	0x09, 0x31,             /*          Usage (Y),                      */
+	0x55, 0x0D,             /*          Unit Exponent (13),             */
+	0x65, 0x33,             /*          Unit (Inch^3),                  */
+	0x26, 0xFF, 0x7F,       /*          Logical Maximum (32767),        */
+	0x35, 0x00,             /*          Physical Minimum (0),           */
+	0x46, 0x00, 0x08,       /*          Physical Maximum (2048),        */
+	0x75, 0x10,             /*          Report Size (16),               */
+	0x95, 0x02,             /*          Report Count (2),               */
+	0x81, 0x02,             /*          Input (Variable),               */
+	0x05, 0x0D,             /*          Usage Page (Digitizer),         */
+	0x09, 0x30,             /*          Usage (Tip Pressure),           */
+	0x26, 0xFF, 0x1F,       /*          Logical Maximum (8191),         */
+	0x75, 0x10,             /*          Report Size (16),               */
+	0x95, 0x01,             /*          Report Count (1),               */
+	0x81, 0x02,             /*          Input (Variable),               */
+	0xC0,                   /*      End Collection,                     */
+	0xC0                    /*  End Collection                          */
+};
+
 /* Parameter indices */
 enum uclogic_prm {
 	UCLOGIC_PRM_X_LM	= 1,
@@ -1128,7 +1173,6 @@ static int uclogic_probe(struct hid_device *hdev,
 	hid_set_drvdata(hdev, drvdata);
 
 	switch (id->product) {
-	case USB_DEVICE_ID_HUION_TABLET:
 	case USB_DEVICE_ID_YIYNOVA_TABLET:
 	case USB_DEVICE_ID_UCLOGIC_UGEE_TABLET_81:
 	case USB_DEVICE_ID_UCLOGIC_DRAWIMAGE_G3:
@@ -1140,6 +1184,25 @@ static int uclogic_probe(struct hid_device *hdev,
 					hdev,
 					uclogic_tablet_rdesc_template,
 					sizeof(uclogic_tablet_rdesc_template));
+			if (rc) {
+				hid_err(hdev, "tablet enabling failed\n");
+				return rc;
+			}
+			drvdata->invert_pen_inrange = true;
+
+			rc = uclogic_probe_buttons(hdev);
+			drvdata->has_virtual_pad_interface = !rc;
+		} else {
+			drvdata->ignore_pen_usage = true;
+		}
+		break;
+	case USB_DEVICE_ID_HUION_TABLET:
+		/* If this is the pen interface */
+		if (intf->cur_altsetting->desc.bInterfaceNumber == 0) {
+			rc = uclogic_probe_tablet(
+					hdev,
+					huion_new_1060_plus_rdesc_template,
+					sizeof(huion_new_1060_plus_rdesc_template));
 			if (rc) {
 				hid_err(hdev, "tablet enabling failed\n");
 				return rc;
