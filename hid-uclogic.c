@@ -756,6 +756,9 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0x75, 0x10,             /*          Report Size (16),               */
 	0x95, 0x01,             /*          Report Count (1),               */
 	0x81, 0x02,             /*          Input (Variable),               */
+	0x75, 0x08,             /*          Report Size (8),                */
+	0x95, 0x04,             /*          Report Count (4),               */
+	0x81, 0x03,             /*          Input (Constant, Variable),     */
 	0xC0,                   /*      End Collection,                     */
 	0xC0                    /*  End Collection                          */
 };
