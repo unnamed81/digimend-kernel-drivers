@@ -1389,7 +1389,7 @@ static int uclogic_raw_event(struct hid_device *hdev, struct hid_report *report,
 	if ((report->type == HID_INPUT_REPORT) &&
 	    (report->id == UCLOGIC_PEN_REPORT_ID) &&
 	    (size >= 2)) {
-		if (drvdata->has_virtual_pad_interface && (data[1] & 0x20))
+		if ((data[1] & 0xc0) != 0x80)
 			/* Change to virtual frame button report ID */
 			data[0] = 0xf7;
 		else if (drvdata->invert_pen_inrange)
