@@ -741,14 +741,20 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0x81, 0x03,             /*          Input (Constant, Variable),     */
 	0x05, 0x01,             /*          Usage Page (Desktop),           */
 	0x09, 0x30,             /*          Usage (X),                      */
-	0x09, 0x31,             /*          Usage (Y),                      */
 	0x55, 0x0D,             /*          Unit Exponent (13),             */
 	0x65, 0x33,             /*          Unit (Inch^3),                  */
-	0x26, 0xFF, 0x7F,       /*          Logical Maximum (32767),        */
+	0x27, 0x70, 0xC6, 0x00, 0x00, /*    Logical Maximum (50800),        */
 	0x34,                   /*          Physical Minimum (0),           */
-	0x46, 0x00, 0x08,       /*          Physical Maximum (2048),        */
+	0x46, 0x10, 0x27,       /*          Physical Maximum (10000),       */
 	0x75, 0x10,             /*          Report Size (16),               */
-	0x95, 0x02,             /*          Report Count (2),               */
+	0x95, 0x01,             /*          Report Count (1),               */
+	0x81, 0x02,             /*          Input (Variable),               */
+	0x09, 0x31,             /*          Usage (Y),                      */
+	0x26, 0x06, 0x7C,       /*          Logical Maximum (31750),        */
+	0x34,                   /*          Physical Minimum (0),           */
+	0x46, 0x6A, 0x18,       /*          Physical Maximum (6250),        */
+	0x75, 0x10,             /*          Report Size (16),               */
+	0x95, 0x01,             /*          Report Count (1),               */
 	0x81, 0x02,             /*          Input (Variable),               */
 	0x05, 0x0D,             /*          Usage Page (Digitizer),         */
 	0x09, 0x30,             /*          Usage (Tip Pressure),           */
