@@ -782,8 +782,8 @@ static const __u8 huion_new_1060_plus_buttonpad_rdesc[] = {
 	0x75, 0x08,             /*          Report Size (8),                */
 	0x95, 0x03,             /*          Report Count (3),               */
 	0x81, 0x03,             /*          Input (Constant, Variable),     */
-	0x19, 0x01,             /*          Usage Minimum (01h),            */
-	0x29, 0x12,             /*          Usage Maximum (12h),            */
+	0x19, 0x07,             /*          Usage Minimum (07h),            */
+	0x29, 0x18,             /*          Usage Maximum (18h),            */
 	0x95, 0x0C,             /*          Report Count (12),              */
 	0x81, 0x02,             /*          Input (Variable),               */
 	0x75, 0x01,             /*          Report Size (1),                */
