@@ -726,19 +726,18 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0x09, 0x42,             /*          Usage (Tip Switch),             */
 	0x09, 0x44,             /*          Usage (Barrel Switch),          */
 	0x09, 0x45,             /*          Usage (Eraser),                 */
-	0x09, 0x3C,             /*          Usage (Invert),                 */
-	0x09, 0x43,             /*          Usage (Secondary Tip Switch),   */
-	0x09, 0x44,             /*          Usage (Barrel Switch),          */
 	0x14,                   /*          Logical Minimum (0),            */
 	0x25, 0x01,             /*          Logical Maximum (1),            */
 	0x75, 0x01,             /*          Report Size (1),                */
-	0x95, 0x06,             /*          Report Count (6),               */
+	0x95, 0x03,             /*          Report Count (3),               */
 	0x81, 0x02,             /*          Input (Variable),               */
+	0x75, 0x01,             /*          Report Size (1),                */
+	0x95, 0x04,             /*          Report Count (4),               */
+	0x81, 0x03,             /*          Input (Constant, Variable),     */
 	0x09, 0x32,             /*          Usage (In Range),               */
 	0x75, 0x01,             /*          Report Size (1),                */
 	0x95, 0x01,             /*          Report Count (1),               */
 	0x81, 0x02,             /*          Input (Variable),               */
-	0x81, 0x03,             /*          Input (Constant, Variable),     */
 	0x05, 0x01,             /*          Usage Page (Desktop),           */
 	0x09, 0x30,             /*          Usage (X),                      */
 	0x55, 0x0D,             /*          Unit Exponent (13),             */
