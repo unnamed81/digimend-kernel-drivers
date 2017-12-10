@@ -1247,7 +1247,6 @@ static int uclogic_probe(struct hid_device *hdev,
 				hid_err(hdev, "tablet enabling failed\n");
 				return rc;
 			}
-			drvdata->invert_pen_inrange = true;
 
 			rc = uclogic_probe_buttons(
 					hdev,
