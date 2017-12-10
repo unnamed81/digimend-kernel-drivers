@@ -1386,7 +1386,7 @@ static int uclogic_raw_event(struct hid_device *hdev, struct hid_report *report,
 	struct uclogic_drvdata *drvdata = hid_get_drvdata(hdev);
 
 	if ((report->type == HID_INPUT_REPORT) &&
-	    (report->id == UCLOGIC_PEN_REPORT_ID) &&
+	    (report->id == 0x08) &&
 	    (size >= 2)) {
 		if ((data[1] & 0xc0) != 0x80)
 			/* Change to virtual frame button report ID */
