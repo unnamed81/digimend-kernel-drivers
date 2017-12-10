@@ -739,9 +739,9 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0x95, 0x01,             /*          Report Count (1),               */
 	0x81, 0x02,             /*          Input (Variable),               */
 	0x05, 0x01,             /*          Usage Page (Desktop),           */
-	0x09, 0x30,             /*          Usage (X),                      */
 	0x55, 0x0D,             /*          Unit Exponent (13),             */
 	0x65, 0x33,             /*          Unit (Inch^3),                  */
+	0x09, 0x30,             /*          Usage (X),                      */
 	0x27, 0x70, 0xC6, 0x00, 0x00, /*    Logical Maximum (50800),        */
 	0x34,                   /*          Physical Minimum (0),           */
 	0x46, 0x10, 0x27,       /*          Physical Maximum (10000),       */
