@@ -722,7 +722,7 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0xA1, 0x01,             /*  Collection (Application),               */
 	0x85, 0x08,             /*      Report ID (8),                      */
 	0x09, 0x20,             /*      Usage (Stylus),                     */
-	0xA0,                   /*      Collection (Physical),              */
+	0xA1,                   /*      Collection (Physical),              */
 	0x09, 0x42,             /*          Usage (Tip Switch),             */
 	0x09, 0x44,             /*          Usage (Barrel Switch),          */
 	0x09, 0x45,             /*          Usage (Eraser),                 */
@@ -749,7 +749,7 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 	0x95, 0x01,             /*          Report Count (1),               */
 	0x81, 0x02,             /*          Input (Variable),               */
 	0x09, 0x31,             /*          Usage (Y),                      */
-	0x26, 0x06, 0x7C,       /*          Logical Maximum (31750),        */
+	0x26, 0xFF, 0x7F,       /*          Logical Maximum (31750),        */
 	0x34,                   /*          Physical Minimum (0),           */
 	0x46, 0x6A, 0x18,       /*          Physical Maximum (6250),        */
 	0x75, 0x10,             /*          Report Size (16),               */
@@ -770,10 +770,10 @@ static const __u8 huion_new_1060_plus_rdesc_template[] = {
 
 /* Fixed virtual pad report descriptor */
 static const __u8 huion_new_1060_plus_buttonpad_rdesc[] = {
-	0x05, 0x01,             /*  Usage Page (Desktop),                   */
-	0x09, 0x07,             /*  Usage (Keypad),                         */
+	0x06, 0x00, 0xFF,             /*  Usage Page (Desktop),                   */
+	0x09, 0x01,             /*  Usage (Keypad),                         */
 	0xA1, 0x01,             /*  Collection (Application),               */
-	0x85, 0xF7,             /*      Report ID (247),                    */
+	0x85, 0x0A,             /*      Report ID (247),                    */
 	0x05, 0x0D,             /*      Usage Page (Digitizer),             */
 	0x09, 0x39,             /*      Usage (Tablet Function Keys),       */
 	0xA0,                   /*      Collection (Physical),              */
